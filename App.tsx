@@ -3,10 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { 
   MainMenuScreen, 
-  ChecklistScreen, 
-  TemplateChecklistScreen,
-  RemindersScreen,
-  ReportsScreen,
+  ChecklistScreen,
   DriveFilesScreen
 } from './src/screens';
 
@@ -46,27 +43,6 @@ export default function App() {
           component={ChecklistScreen}
           options={{
             title: 'Checklist'
-          }}
-        />
-        <Stack.Screen 
-          name="TemplateChecklist" 
-          component={TemplateChecklistScreen}
-          options={{
-            title: 'Plantillas'
-          }}
-        />
-        <Stack.Screen 
-          name="Reminders" 
-          component={RemindersScreen}
-          options={{
-            title: 'Recordatorios'
-          }}
-        />
-        <Stack.Screen 
-          name="Reports" 
-          component={ReportsScreen}
-          options={{
-            title: 'Generador de Reportes'
           }}
         />
         <Stack.Screen 

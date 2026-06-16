@@ -1,30 +1,26 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ChecklistData } from '../types/checklist';
-import { SucursalType } from 'src/types/sucursal';
 
 const STORAGE_KEYS = {
     DRAFT_PREFIX: 'checklist_draft_',
-    LAST_SUCURSAL: 'last_sucursal',
     DRAFT_TIMESTAMP: 'draft_timestamp',
 };
 
 // Guardar borrador automáticamente
 export const saveDraft = async (
-    sucursalKey: SucursalType, 
     data: ChecklistData
 ): Promise<void> => {
     try {
-        const key = `${STORAGE_KEYS.DRAFT_PREFIX}${sucursalKey}`;
+        const key = `${STORAGE_KEYS.DRAFT_PREFIX}`;
         const draftData = {
             ...data,
             _lastSaved: new Date().toISOString(),
         };
         
         await AsyncStorage.setItem(key, JSON.stringify(draftData));
-        await AsyncStorage.setItem(STORAGE_KEYS.LAST_SUCURSAL, sucursalKey);
         await AsyncStorage.setItem(STORAGE_KEYS.DRAFT_TIMESTAMP, Date.now().toString());
         
-        console.log(`✅ Borrador guardado para ${sucursalKey}`);
+        console.log(`✅ Borrador guardado para`);
     } catch (error) {
         console.error('Error guardando borrador:', error);
     }
@@ -32,15 +28,14 @@ export const saveDraft = async (
 
 // Cargar borrador
 export const loadDraft = async (
-    sucursalKey: SucursalType
 ): Promise<ChecklistData | null> => {
     try {
-        const key = `${STORAGE_KEYS.DRAFT_PREFIX}${sucursalKey}`;
+        const key = `${STORAGE_KEYS.DRAFT_PREFIX}`;
         const saved = await AsyncStorage.getItem(key);
         
         if (saved) {
             const draft = JSON.parse(saved);
-            console.log(`✅ Borrador cargado para ${sucursalKey}`);
+            console.log(`✅ Borrador cargado`);
             return draft;
         }
     } catch (error) {
@@ -51,9 +46,9 @@ export const loadDraft = async (
 };
 
 // Verificar si existe borrador
-export const hasDraft = async (sucursalKey: SucursalType): Promise<boolean> => {
+export const hasDraft = async (): Promise<boolean> => {
     try {
-        const key = `${STORAGE_KEYS.DRAFT_PREFIX}${sucursalKey}`;
+        const key = `${STORAGE_KEYS.DRAFT_PREFIX}`;
         const saved = await AsyncStorage.getItem(key);
         return saved !== null;
     } catch (error) {
@@ -62,18 +57,18 @@ export const hasDraft = async (sucursalKey: SucursalType): Promise<boolean> => {
 };
 
 // Eliminar borrador después de guardar exitosamente
-export const clearDraft = async (sucursalKey: SucursalType): Promise<void> => {
+export const clearDraft = async (): Promise<void> => {
     try {
-        const key = `${STORAGE_KEYS.DRAFT_PREFIX}${sucursalKey}`;
+        const key = `${STORAGE_KEYS.DRAFT_PREFIX}`;
         await AsyncStorage.removeItem(key);
-        console.log(`🗑️ Borrador eliminado para ${sucursalKey}`);
+        console.log(`🗑️ Borrador eliminado`);
     } catch (error) {
         console.error('Error eliminando borrador:', error);
     }
 };
 
 // Obtener tiempo desde último guardado
-export const getDraftAge = async (sucursalKey: SucursalType): Promise<number | null> => {
+export const getDraftAge = async (): Promise<number | null> => {
     try {
         const timestamp = await AsyncStorage.getItem(STORAGE_KEYS.DRAFT_TIMESTAMP);
         return timestamp ? Date.now() - parseInt(timestamp) : null;

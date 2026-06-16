@@ -2,7 +2,6 @@ export type Cumplimiento = 'bueno' | 'regular' | 'malo' | '';
 
 export interface ChecklistPhoto {
   id: string;
-  area: string;
   photoUri: string; // URL pública de Supabase o local
   timestamp: string;
   description: string;
