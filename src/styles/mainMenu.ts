@@ -10,7 +10,7 @@ export const stylesmainMenu = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 5,
-        paddingLeft: 15,
+        paddingLeft: 5,
         backgroundColor: '#fff',
         borderBottomWidth: 1,
         borderBottomColor: '#e0e0e0',
@@ -21,16 +21,18 @@ export const stylesmainMenu = StyleSheet.create({
         shadowRadius: 2,
     },
     logo: {
-        width: 60,
-        height: 60,
+        width: 80,
+        height: 80,
         borderRadius: 12,
-        marginRight: 5,
+        margin: -5
     },
     headerText: {
-        flex: 1,
         flexDirection: 'column',
-        justifyContent: 'space-between',
-        margin: -2,
+        flex: 1,
+        padding: 20,
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: '#000000'
     },
     nameVersion: {
         flexDirection: 'row',

@@ -32,7 +32,7 @@ export default function App() {
             headerTintColor: '#05aaca',
             headerTitleStyle: {
               fontWeight: 'bold',
-            },
+            }
           }}
         >
           <Stack.Screen 

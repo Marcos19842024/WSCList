@@ -93,18 +93,15 @@ export const MainMenuScreen = () => {
 
   return (
     <View style={stylesmainMenu.container}>
-      {/* Header */}
+
       <View style={stylesmainMenu.header}>
         <Image
-          source={require('../../assets/icon.png')}
+          source={require('../../assets/adaptive-icon.png')}
           style={stylesmainMenu.logo}
         />
-        <View style={stylesmainMenu.headerText}>
-          <View style={stylesmainMenu.nameVersion}>
-            <Text style={stylesmainMenu.appName}>Wen Scrap Confort</Text>
-            <Text style={stylesmainMenu.appVersion}>Versión 1.0.0</Text>
-          </View>
-        </View>
+        <Text style={stylesmainMenu.headerText}>
+          WSC Wen Scrap Confort
+        </Text>
       </View>
 
       {/* Menu Grid */}
